@@ -1,14 +1,20 @@
 {
+  "name": "next-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next-app/node_modules/.bin/next dev",
+    "build": "next-app/node_modules/.bin/next build",
+    "start": "next-app/node_modules/.bin/next start",
+    "lint": "next-app/node_modules/.bin/next lint"
+  },
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.6",
-    "express": "^4.17.3",
-    "init": "^0.1.2",
-    "weaviate": "^0.0.14",
-    "weaviate-client": "^2.14.5",
+    "next": "14.2.5",
     "weaviate-ts-client": "^2.2.0"
   },
-  "scripts": {
-    "start": "node index.js"
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "18.3.3",
+    "typescript": "^5"
   }
 }
