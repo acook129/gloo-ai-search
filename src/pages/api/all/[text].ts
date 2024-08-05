@@ -60,7 +60,7 @@ export default async function handler(
 
     }
     else {
-        obj = []
+        const obj = []
         for (let i = 0; i < value.length; i++) {
             obj.push({
                 path: field.split(" "),
@@ -68,12 +68,12 @@ export default async function handler(
                 valueString: value[i]
             })
         }
-        parent_obj = {
+        const parent_obj = {
             operator: 'Or',
             operands: obj
         }
         if (value.constructor == Array) {
-            where_obj = {
+            const where_obj = {
                 operator: 'And',
                 operands: [
                     parent_obj,
@@ -102,7 +102,7 @@ export default async function handler(
             }
         }
         else {
-            where_obj = {
+            const where_obj = {
                 operator: 'And',
                 operands: [
                     {
