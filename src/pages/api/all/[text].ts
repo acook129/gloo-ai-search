@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import weaviate from 'weaviate-ts-client';
+import weaviate, {WhereFilter} from 'weaviate-ts-client';
 
 const client = weaviate.client({
     scheme: 'https',
@@ -19,6 +19,7 @@ export default async function handler(
     res: NextApiResponse<Data>,
 ) {
     const { text, field, value, num_results, threshold } = req.query as Record<string, string>;
+    let where_obj:  WhereFilter
     console.log(field, value, num_results, threshold)
     if (field == null || value == null || field == '' || value == '') {
         console.log("hello")
@@ -73,10 +74,10 @@ export default async function handler(
             operands: obj
         }
         if (value.constructor == Array) {
-            const where_obj = {
+             where_obj = {
                 operator: 'And',
                 operands: [
-                    parent_obj,
+                    parent_obj as any,
                     {
                         "operator":"And",
                         operands:[{
@@ -102,7 +103,7 @@ export default async function handler(
             }
         }
         else {
-            const where_obj = {
+             where_obj = {
                 operator: 'And',
                 operands: [
                     {
